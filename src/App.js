@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
+
+import Sidebar from './Sidebar';
+import Tweets from './Pages/Tweets';
+import MyPage from './Pages/MyPage';
+import About from './Pages/About';
+import LogIn from './Pages/LogIn'
+
 import './App.css';
 
-function App() {
+const App = () => {
+  let [isLoggedIn, setIsLoggedIn] = useState({ state: false, user: "" });
+  console.log(isLoggedIn);
+  const { pathname } = useLocation();
+
+  if (isLoggedIn.state && pathname === "/login") {
+    return <Navigate to={`../mypage/${isLoggedIn.user}`} />
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Sidebar currentUser={isLoggedIn.user} />
+      <section className="features">
+        <Routes>
+          <Route path='/' element={<Tweets currentUser={isLoggedIn.user} />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/mypage/:username' element={<MyPage isLoggedIn={isLoggedIn} />} />
+          <Route path='/login' element={<LogIn checkLogIn={setIsLoggedIn} />} />;
+        </Routes>
+      </section>
+    </main>
   );
-}
+};
+
 
 export default App;

@@ -1,38 +1,98 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --main-border-color: rgb(235, 238, 240);
+  --point-color: rgb(64, 0, 199);
+  --point-color-tint: rgb(159, 127, 227);
+  --default-text-color: rgb(0, 0, 0);
+  --sub-text-color: rgb(91, 112, 131);
+  --bold-text-color: rgb(15, 20, 25);
+  --button-text-color: rgb(255, 255, 255);
+  --button-color: rgb(142, 173, 240);
+  --shade-color: rgb(229, 229, 229);
+  --mypage-component-color: #ecaf05;
+  --about-component-color: #05965a;
+  --tweets-component-color: #0351aa;
+
+  --main-shadow: 2px 2px 20px grey;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  display: flex;
+  justify-content: center;
   min-height: 100vh;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  border: 0;
+}
+
+/* button,
+input {
+  overflow: visible;
+}
+
+button {
+  background-color: var(--button-color);
+  color: var(--button-text-color);
+} */
+
+textarea {
+  overflow: auto;
+  resize: none;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+}
+
+footer {
+  flex: 0 0 1rem;
+  padding: 0.3rem;
+  text-align: right;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  max-width: 640px;
+  height: 90vh;
+  flex: 1 1 0;
+  border-radius: 10px;
+  box-shadow: var(--main-shadow);
+  overflow: hidden;
+}
+
+.sidebar {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.far,
+.fas {
+  font-size: 2rem;
+  color: var(--default-text-color);
+  padding: 1.3rem;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.features {
+  width: 564px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
 }

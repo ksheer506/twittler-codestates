@@ -1,0 +1,138 @@
+.tweetForm__container {
+  border-bottom: 1px solid var(--main-border-color);
+  margin-bottom: 0.5rem;
+}
+
+.tweetForm__wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 1rem;
+  background-color: var(--tweets-component-color);
+}
+
+.tweetForm__profile {
+  padding: 0.2rem;
+}
+
+.tweetForm__profile > img {
+  display: inline-block;
+  width: 50px;
+  border-radius: 100%;
+}
+
+.tweetForm__inputContainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  flex: 1 1;
+}
+
+.tweetForm__inputWrapper {
+  display: flex;
+  margin-left: 5px;
+  flex: 0 0 4rem;
+}
+
+.current_UserName {
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.tweetForm__input {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+}
+
+.tweetForm__input--username {
+  flex: 1 0;
+  width: 20rem;
+  border: 0;
+  margin-bottom: 2px;
+  border-radius: 0px 10px 0px 0px;
+}
+
+.tweetForm__input--message {
+  flex: 3 0 0;
+  width: 20rem;
+  border: 0;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.tweetForm__count * {
+  margin: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.tweetForm__count__text {
+  color: white;
+}
+
+.tweetForm__submit {
+  display: flex;
+  height: 40px;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 0 1;
+}
+
+.tweetForm__submitButton {
+  width: 80px;
+  height: 35px;
+  /*   margin: 0.5rem;
+  padding: 0.5rem 1rem; */
+  border-radius: 20px;
+  color: var(--tweets-component-color);
+  border: 1px solid var(--tweets-component-color);
+  background: white;
+  box-shadow: 1px 1px 10px rgb(136, 136, 136);
+  margin-left: auto;
+  transition: 0.6s all;
+}
+
+.tweetForm__submitButton:hover,
+.tweetForm__submitButton:focus {
+  color: var(--tweets-component-color);
+  border: 1px solid var(--tweets-component-color);
+  background-color: white;
+  transition: 0.6s all;
+}
+
+.tweetForm__submitButton:focus {
+  outline: none;
+  box-shadow: 0 0 3px #ddd;
+}
+
+.tweets {
+  flex: 1 1 80vh;
+  border: 2px solid var(--tweets-component-color);
+  border-bottom: 0px;
+  overflow-y: scroll;
+}
+
+.tweet__selectUser {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.tweet__selectUser > select {
+  width: 120px;
+  height: 30px;
+  background-color: rgba(230, 227, 227, 0.548);
+}
+
+.tweet__selectUser > span {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-right: 5px;
+}
