@@ -7,8 +7,9 @@ import dummyTweets from './static/dummyData';
 
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App dummyTweets={dummyTweets} />
-  </BrowserRouter>,
-  document.getElementById('root')
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
+    document.getElementById('root')
 );
+
