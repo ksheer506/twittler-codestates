@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 
 import Modal from '../Components/Modal';
 import './LogIn.css';
 
 const LogIn = ({ checkLogIn }) => {
-  const [idPW, setIdPW] = useState({ id: "", password: "" })
+  const [idPW, setIdPW] = useState({ id: "", password: "" });
+  const navigate = useNavigate();
 
   const goToMyPage = (e) => {
     checkLogIn({ state: true, user: idPW.id });
-    return <Navigate to="../mypage" />  // FIXME: App애 두면 되는데 여기에 두면 왜 안 되지?
+    return <Navigate to="../mypage" />  // FIXME: App에 두면 되는데 여기에 두면 왜 안 되지?
   }
 
   const input = (e, type) => {
@@ -22,7 +23,7 @@ const LogIn = ({ checkLogIn }) => {
 
   const submitLogin = async (e) => {
     e.preventDefault();
-    const url = 'http://localhost:1000/'
+    const url = 'http://localhost:1000/twittler/login'
     const option = {
       method: 'POST',
       headers: {
@@ -35,7 +36,9 @@ const LogIn = ({ checkLogIn }) => {
     const serverReq = await fetch(url, option);
     const result = await serverReq.json();
     if (result.state === "success") {
+      
       checkLogIn({ state: true, user: result.user });
+      navigate(`../mypage/${result.user}`)
     }
   }
 
