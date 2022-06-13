@@ -1,7 +1,5 @@
 // TODO : useState를 react로 부터 import 합니다.
-import React, { useState } from 'react';
-import Footer from '../Footer';
-import Tweet from '../Components/Tweet';
+import React, { useState, useEffect } from 'react';
 import './Tweets.css';
 import Filter from '../Components/Filter'
 import dummyTweets from '../static/dummyData';
@@ -29,57 +27,23 @@ class Twittler {
   }
 }
 
-const userList = (arr) => {
-  const uniqueUsers = arr.reduce((acc, curr) => {
-    if (!acc[curr.username]) {
-      acc[curr.username] = 1;
-      return acc;
-    }
-    acc[curr.username] += 1;
 
-    return acc;
-  }, {})
-
-  return Object.keys(uniqueUsers);
-};
-
-
-const Tweets = ({ currentUser }) => {
+const Tweets = ({ currentUser, Tweets, callbacks, userList, children }) => {
+  const { onTweet, onFilter } = callbacks;
   const [newTweet, setNewTweet] = useState({ content: "" });
-  const [Tweets, setTweets] = useState(dummyTweets);
-  const [filterTweet, setFilterTweet] = useState(dummyTweets);
 
-  const handleButtonClick = () => {
-    const tweet = new Twittler(currentUser, newTweet.content);
-console.log(tweet);
-    setTweets([tweet, ...Tweets]);
-    setFilterTweet([tweet, ...Tweets]);
-  };
 
   const handleChangeMsg = (e) => {
     setNewTweet({ content: e.target.value });
   };
-
-  const handleFiltering = (e) => {
-    const filteredTweets = Tweets.filter((tweet) => {
-      if (e.target.value === "") {  // 필터링 값이 없을 때(전체 표시)
-        return true;
-      }
-      return tweet.username === e.target.value;
-    });
-
-    setFilterTweet(filteredTweets);
+  const handleCreate = (e) => {
+    const tweet = new Twittler(currentUser, newTweet.content);
+    onTweet(tweet);
   };
 
-  const deleteTweet = (tweetId) => {
-    const result = Tweets.filter((tweet) => tweet.id !== tweetId);
 
-    setTweets(result);
-    setFilterTweet(result);
-  }
- 
   return (
-    <React.Fragment>
+    <>
       <div className="tweetForm__container">
         <div className="tweetForm__wrapper">
           <div className="tweetForm__profile">
@@ -98,19 +62,19 @@ console.log(tweet);
               </div>
             </div>
             <div className="tweetForm__submit">
-              <button className='tweetForm__submitButton' value="Tweet" onClick={handleButtonClick}>Tweet</button>
+              <button className='tweetForm__submitButton' value="Tweet" onClick={handleCreate}>Tweet</button>
             </div>
           </div>
         </div>
       </div>
       <div className="tweet__selectUser">
         <span>유저 필터링</span>
-        <Filter onSelect={handleFiltering} userList={userList(Tweets)} />
+        <Filter onSelect={onFilter} userList={userList} />
       </div>
       <ul className="tweets">
-        {filterTweet.map((tweet) => (<Tweet tweet={tweet} currentUser={currentUser} onClick={deleteTweet} key={tweet.id} />))}
+        {children}
       </ul>
-    </React.Fragment>
+    </>
   );
 };
 

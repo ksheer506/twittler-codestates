@@ -1,7 +1,6 @@
 import React from 'react';
-import { Navigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-import Footer from '../Footer';
 import Tweet from '../Components/Tweet';
 import './MyPage.css';
 import dummyTweets from '../static/dummyData';
@@ -10,10 +9,6 @@ import dummyTweets from '../static/dummyData';
 const MyPage = ({ isLoggedIn }) => {
   const { username } = useParams();
   const filteredTweets = dummyTweets.filter((tweet) => tweet.username === username);
-
-  if (!isLoggedIn.state) {
-    return <Navigate to="/login" />
-  }
 
   return (
     <section className="myInfo">
