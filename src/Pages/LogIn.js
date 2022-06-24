@@ -23,14 +23,13 @@ const LogIn = ({ checkLogIn }) => {
 
   const submitLogin = async (e) => {
     e.preventDefault();
-    const url = 'http://localhost:1000/twittler/login'
+    const url = 'http://localhost:2000/twittler/login'
     const option = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(idPW),
-      credentials: "include"
     }
 
     const serverReq = await fetch(url, option);
